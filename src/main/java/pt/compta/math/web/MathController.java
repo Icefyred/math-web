@@ -11,17 +11,17 @@ import pt.compta.tools.fourthmaven.MathUtils;
 public class MathController {
 
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
-	public String returnString(@RequestParam("op") String someName, @RequestParam("val1") String secondName, @RequestParam("val2") String thirdName) {
+	public String calculate(@RequestParam("op") String typeOfOperator, @RequestParam("val1") String firstNumberValue, @RequestParam("val2") String secondNumberValue) {
 		
-		String result = "";
+		String resultFromOperation = "";
 		
-		if(someName.equals("subtract")) {
-			result += MathUtils.subtractOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
+		if(typeOfOperator.equals("subtract")) {
+			resultFromOperation += MathUtils.subtractOfTwoNumbers(Integer.parseInt(firstNumberValue), Integer.parseInt(secondNumberValue));
 		}
-		else if(someName.equals("sum")) {
-			result += MathUtils.sumOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
+		else if(typeOfOperator.equals("sum")) {
+			resultFromOperation += MathUtils.sumOfTwoNumbers(Integer.parseInt(firstNumberValue), Integer.parseInt(secondNumberValue));
 		}
-		return "Result:  " + result;
+		return "Result:  " + resultFromOperation;
 	}
 
 }
