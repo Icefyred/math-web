@@ -4,13 +4,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import pt.compta.tools.fourthmaven.MathUtils;
 
-@RestController //a class MathController vai ser vista como um entry point para um request da Web, also know as controller. Onde os metodos que tiverem a anotação @RequestMapping serao 'mappeados' aos request HTTP provinientes do cliente
+
+@RestController
 public class MathController {
 
-	@RequestMapping(value = "/hello", method = RequestMethod.GET) //annotation that marks the method below to be mapped and executed when an HTTP GET request to “/” is received
-	public String returnString(@RequestParam("who") String someName) {
-		return "Hello " + someName;
+	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
+	public String returnString(@RequestParam("op") String someName, @RequestParam("val1") String secondName, @RequestParam("val2") String thirdName) {
+		return "Result:  " + MathUtils.sumOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
 	}
 
 }
