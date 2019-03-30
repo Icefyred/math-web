@@ -12,7 +12,16 @@ public class MathController {
 
 	@RequestMapping(value = "/calculate", method = RequestMethod.GET)
 	public String returnString(@RequestParam("op") String someName, @RequestParam("val1") String secondName, @RequestParam("val2") String thirdName) {
-		return "Result:  " + MathUtils.sumOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
+		
+		String result = "";
+		
+		if(someName.equals("subtract")) {
+			result += MathUtils.subtractOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
+		}
+		else if(someName.equals("sum")) {
+			result += MathUtils.sumOfTwoNumbers(Integer.parseInt(secondName), Integer.parseInt(thirdName));
+		}
+		return "Result:  " + result;
 	}
 
 }
